@@ -1,6 +1,6 @@
-/* テーマのカラー変数 */
+/* Theme color variables */
 :root {
-  /* ライトモード（デフォルト）のカラー */
+  /* Light mode (default) colors */
   --color-background: #ffffff;
   --color-text: #333333;
   --color-text-secondary: #555555;
@@ -17,7 +17,7 @@
   --color-shadow: rgba(0, 0, 0, 0.08);
 }
 
-/* ダークモード用のカラー（システム設定基準） */
+/* Dark mode colors (based on system settings) */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: #1e1e1e;
@@ -37,7 +37,7 @@
   }
 }
 
-/* Figmaのテーマ指定（クラスベース）- ライトモード */
+/* Figma theme setting (class-based) - Light mode */
 .figma-light {
   --color-background: #ffffff;
   --color-text: #333333;
@@ -55,7 +55,7 @@
   --color-shadow: rgba(0, 0, 0, 0.08);
 }
 
-/* Figmaのテーマ指定（クラスベース）- ダークモード */
+/* Figma theme setting (class-based) - Dark mode */
 .figma-dark {
   --color-background: #1e1e1e;
   --color-text: #e0e0e0;
@@ -73,7 +73,7 @@
   --color-shadow: rgba(0, 0, 0, 0.25);
 }
 
-/* Figma UI テーマを継承 */
+/* Inherit Figma UI theme */
 body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 20px;
@@ -210,13 +210,13 @@ button#cancel {
   border: 1px solid var(--color-cancel-border);
 }
 
-/* フォーカス時のスタイル */
+/* Focus styles */
 button:focus,
 input:focus {
   outline: none;
 }
 
-/* Figmaのスタイルに近づけるため、テキスト選択スタイルを設定 */
+/* Text selection style to match Figma's design system */
 ::selection {
   background-color: rgba(13, 153, 255, 0.2);
 }

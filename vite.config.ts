@@ -3,7 +3,7 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 import path from 'path';
 import fs from 'fs';
 
-// 共通のビルド設定
+// Common build configuration
 const baseConfig: UserConfig = {
   build: {
     outDir: 'dist',
@@ -14,7 +14,7 @@ const baseConfig: UserConfig = {
   }
 };
 
-// プラグインコード（バックグラウンド）用の設定
+// Configuration for plugin code (background)
 const codeConfig = defineConfig(mergeConfig(baseConfig, {
   build: {
     lib: {
@@ -33,7 +33,7 @@ const codeConfig = defineConfig(mergeConfig(baseConfig, {
   }
 }));
 
-// UI用の設定（viteSingleFileを使用）
+// Configuration for UI (using viteSingleFile)
 const uiConfig = defineConfig(mergeConfig(baseConfig, {
   plugins: [
     viteSingleFile(),
@@ -43,27 +43,27 @@ const uiConfig = defineConfig(mergeConfig(baseConfig, {
         sequential: true,
         order: 'post',
         handler() {
-          // HTMLファイルを移動
+          // Move HTML file
           const sourcePath = path.resolve(__dirname, 'dist/src/ui.html');
           const destPath = path.resolve(__dirname, 'dist/ui.html');
           const srcDir = path.resolve(__dirname, 'dist/src');
           
           if (fs.existsSync(sourcePath)) {
-            // ファイルが存在する場合はコピーして元のファイルを削除
+            // If the file exists, copy it and delete the original file
             fs.mkdirSync(path.dirname(destPath), { recursive: true });
             fs.copyFileSync(sourcePath, destPath);
             fs.unlinkSync(sourcePath);
-            console.log(`HTMLファイルを ${sourcePath} から ${destPath} に移動しました`);
+            console.log(`Moved HTML file from ${sourcePath} to ${destPath}`);
             
-            // srcディレクトリが空になったら削除
+            // Delete if the src directory becomes empty
             try {
               const files = fs.readdirSync(srcDir);
               if (files.length === 0) {
                 fs.rmdirSync(srcDir);
-                console.log(`空のディレクトリを削除しました: ${srcDir}`);
+                console.log(`Deleted empty directory: ${srcDir}`);
               }
             } catch (error) {
-              console.error(`ディレクトリ削除中にエラーが発生しました: ${error}`);
+              console.error(`Error during directory deletion: ${error}`);
             }
           }
         }
@@ -82,10 +82,10 @@ const uiConfig = defineConfig(mergeConfig(baseConfig, {
   }
 }));
 
-// コマンドラインオプションに基づいて、異なる設定を使用
+// Use different configurations based on command line options
 export default defineConfig(({ mode, command }) => {
   if (command === 'build') {
-    // 環境変数 VITE_BUILD_TARGET に基づいて設定を選択
+    // Select configuration based on VITE_BUILD_TARGET environment variable
     const target = process.env.VITE_BUILD_TARGET;
     
     if (target === 'code') {
@@ -96,10 +96,10 @@ export default defineConfig(({ mode, command }) => {
       return uiConfig;
     }
     
-    // デフォルトはuiConfig
+    // Default is uiConfig
     return uiConfig;
   }
 
-  // 開発モードの場合は、UI設定を使用
+  // For development mode, use UI configuration
   return uiConfig;
 });

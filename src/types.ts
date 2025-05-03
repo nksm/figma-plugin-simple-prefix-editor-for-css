@@ -1,4 +1,4 @@
-// メッセージの型定義
+// Message type definitions
 export interface ApplyMessage {
   type: "apply";
   prefix: string;

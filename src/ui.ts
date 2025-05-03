@@ -1,17 +1,14 @@
 /// <reference types="@figma/plugin-typings" />
-import { ApplyMessage, CancelMessage, ThemeChangedMessage } from "./types";
+import { ApplyMessage, CancelMessage } from "./types";
 import "./ui.css";
 
-// DOMが読み込まれた後に実行
+// Run after DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   const bodyElement = document.body;
   const prefixInput = document.getElementById("prefix") as HTMLInputElement;
-  const convertSlashCheckbox = document.getElementById(
-    "convertSlash"
-  ) as HTMLInputElement;
   const previewCode = document.querySelector(".preview code") as HTMLElement;
 
-  // テーマの設定を適用する関数
+  // Function to apply theme settings
   const applyTheme = (isDarkMode: boolean) => {
     if (isDarkMode) {
       bodyElement.classList.add("figma-dark");
@@ -22,35 +19,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // プレビュー表示を更新する関数
+  // Function to update the preview display
   const updatePreview = () => {
     if (previewCode) {
-      previewCode.textContent = `var(${prefixInput.value}変数名)`;
+      previewCode.textContent = `var(${prefixInput.value}variableName)`;
     }
   };
 
-  // 初期表示時にプレビューを更新
+  // Update preview on initial display
   updatePreview();
 
-  // プレフィックスが変更されたらプレビューを更新
+  // Update preview when prefix changes
   if (prefixInput) {
     prefixInput.addEventListener("input", updatePreview);
   }
 
-  // テーマはシステム設定から直接取得し、Figmaからのメッセージには依存しない
+  // Theme is managed directly through system settings, not dependent on Figma messages
 
-  // 適用ボタンのイベントリスナー
+  // Apply button event listener
   const applyButton = document.getElementById("apply");
   if (applyButton) {
     applyButton.addEventListener("click", () => {
-      // プラグインにメッセージを送信
+      // Send message to plugin
       parent.postMessage(
         {
           pluginMessage: {
             type: "apply",
             prefix: prefixInput.value,
-            convertSlash: convertSlashCheckbox.checked,
-            // selectAllオプションは削除されたため、デフォルトでtrue
+            convertSlash: true,
             selectAll: true,
           } as ApplyMessage,
         },
@@ -59,11 +55,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // キャンセルボタンのイベントリスナー
+  // Cancel button event listener
   const cancelButton = document.getElementById("cancel");
   if (cancelButton) {
     cancelButton.addEventListener("click", () => {
-      // プラグインにキャンセルメッセージを送信
+      // Send cancel message to plugin
       parent.postMessage(
         {
           pluginMessage: {
@@ -75,14 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ダークモード/ライトモードの自動検出（システム設定）
-  // これはFigmaのテーマとは別に、ブラウザ/OSの設定に基づいて動作
+  // Automatic dark/light mode detection (system settings)
+  // This works based on browser/OS settings, separate from Figma theme
   const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  
-  // 初期状態の設定
+
+  // Set initial state
   applyTheme(darkModeMediaQuery.matches);
-  
-  // テーマ変更を検知
+
+  // Detect theme changes
   darkModeMediaQuery.addEventListener("change", (e) => {
     applyTheme(e.matches);
   });

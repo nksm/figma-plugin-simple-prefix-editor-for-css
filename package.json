@@ -1,7 +1,7 @@
 {
   "name": "figma-plugin-variable-code-syntax-formatter",
   "version": "1.0.0",
-  "description": "Figmaの変数に対してCSS変数のプレフィックスを一括で設定するプラグイン",
+  "description": "A Figma plugin to format variables as CSS custom properties with customizable prefixes",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "build": "npm run build:ui && npm run build:code && npm run postbuild",
     "build:ui": "cross-env VITE_BUILD_TARGET=ui vite build",
     "build:code": "cross-env VITE_BUILD_TARGET=code vite build",
-    "postbuild": "echo 'ビルド完了'",
+    "postbuild": "echo 'Build completed'",
     "clean": "rimraf dist",
     "preview": "vite preview",
     "check": "tsc --noEmit",

@@ -1,64 +1,65 @@
-# CSS変数スニペットフォーマッター for Figma
+# CSS Variable Syntax Formatter for Figma
 
-Figmaの変数のコードスニペットをCSS変数形式でフォーマットするプラグインです。
+A Figma plugin that formats variable code syntax as CSS variables.
 
-## 機能
+## Features
 
-- 開発者モードでコピーするコードスニペット形式のみを変更
-- CSS変数プレフィックスを追加（例: `--mds-`）
-- スラッシュ（/）をハイフン（-）に自動変換
-- 実際の変数値は変更せず、コピー時の形式だけを変更
+- Sets custom prefixes for all variables at once
+- Automatically converts slashes (/) to hyphens (-)
+- Formats variables as CSS custom properties with `var()` function
+- Works with all variable collections in the document
 
-## 使い方
+## How to Use
 
-1. プラグインを起動する
-2. CSS変数プレフィックスを入力（例: `--mds-`）
-3. 必要に応じてスラッシュをハイフンに変換するオプションを設定
-4. 「適用」ボタンをクリック
-5. 開発者モードで変数を選択してコードをコピーすると、設定した形式でコピーされる
+1. Launch the plugin
+2. Enter your desired CSS variable prefix (e.g., `--ds-`)
+3. Click "Apply"
+4. All variables will now use the formatted syntax when copied in developer mode
 
-## メリット
+## Benefits
 
-- デザイントークンをCSS変数としてコードにコピーする際の形式を統一
-- 変数名の階層構造を保ちながら、CSS変数の命名規則（ハイフン区切り）に対応
-- `var()` 関数で囲まれた形式で出力されるため、そのままCSSに貼り付け可能
+- Standardizes variable naming across design systems
+- Ensures CSS variable naming convention compliance (hyphen-separated)
+- Outputs variables wrapped in `var()` function ready to paste into CSS
+- Preserves variable hierarchy while improving readability
 
-## 開発方法
+## Development
 
-### 前提条件
+### Prerequisites
 
 - Node.js
 - npm
 
-### セットアップ
+### Setup
 
 ```bash
-# 依存関係のインストール
+# Install dependencies
 npm install
 
-# 開発モードで実行（変更を監視）
+# Run in development mode (watch for changes)
 npm run dev
 
-# プロジェクトをビルド
+# Build the project
 npm run build
 ```
 
-### Figma でのテスト
+### Testing in Figma
 
-1. Figma を開く
-2. メニューから「プラグイン」>「開発」>「マニフェストからプラグインをインポート」を選択
-3. このリポジトリの `manifest.json` ファイルを選択
+1. Open Figma
+2. Go to Plugins > Development > Import plugin from manifest
+3. Select the `manifest.json` file from this repository
 
-## 技術情報
+## Technical Details
 
-- TypeScriptとViteを使用したモダンな開発環境
-- Figma変数APIを使用した効率的な実装
-- CSS変数形式: `var(--prefix-変数名)`
+- Modern development environment with TypeScript and Vite
+- Efficient implementation using Figma Variables API
+- CSS variable format: `var(--prefix-variableName)`
+- Automatic dark/light mode support
 
-## ライセンス
+## License
 
 ISC
 
 ---
 
-_このプラグインは、Figma変数システムとCSS変数を連携させ、デザイントークンを効率的にコードにエクスポートするためのものです。_
+_This plugin helps bridge the gap between Figma Variables and CSS custom properties, making it easier to export design tokens to code._

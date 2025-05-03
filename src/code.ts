@@ -1,55 +1,55 @@
 /// <reference types="@figma/plugin-typings" />
 import { PluginMessage, UIMessage } from "./types";
 
-// プラグインのUIを表示
+// Show plugin UI
 figma.showUI(__html__, { width: 320, height: 360 });
 
-// テーマ情報はUIのみで管理し、プラグイン側では関与しない
-// OSの設定に基づいてUIが自動的に調整する
+// Theme information is managed only in the UI, the plugin doesn't get involved
+// UI automatically adjusts based on OS settings
 
-// UIからのメッセージを処理
+// Process messages from UI
 figma.ui.onmessage = async (msg: UIMessage) => {
   if (msg.type === "cancel") {
     figma.closePlugin();
     return;
   }
 
-  // テーマ取得リクエストは無視する - UIが自動的にシステム設定に基づいて調整する
+  // Ignore theme requests - UI automatically adjusts based on system settings
 
   if (msg.type === "apply") {
     const { prefix, convertSlash } = msg;
 
     try {
-      // 利用可能なすべての変数コレクションを取得
+      // Get all available variable collections
       const collections = figma.variables.getLocalVariableCollections();
 
       if (collections.length === 0) {
-        figma.notify("変数コレクションが見つかりません。");
+        figma.notify("No variable collections found.");
         return;
       }
 
       let totalUpdatedVariables: number = 0;
 
-      // 各コレクションを処理
+      // Process each collection
       for (const collection of collections) {
-        // コレクション内のすべての変数IDを取得
+        // Get all variable IDs in the collection
         const variableIds = collection.variableIds;
 
-        // 各変数に対して処理を行う
+        // Process each variable
         for (const variableId of variableIds) {
           const variable = figma.variables.getVariableById(variableId);
 
           if (!variable) continue;
 
-          // 変数の名前を取得
+          // Get the variable name
           let variableName: string = variable.name;
 
-          // スラッシュをハイフンに変換するオプションが選択されている場合
+          // Convert slashes to hyphens if the option is selected
           if (convertSlash) {
             variableName = variableName.replace(/\//g, "-");
           }
 
-          // コード構文を設定
+          // Set the code syntax
           variable.setVariableCodeSyntax(
             "WEB",
             `var(${prefix}${variableName})`
@@ -58,19 +58,19 @@ figma.ui.onmessage = async (msg: UIMessage) => {
         }
       }
 
-      // 完了通知
+      // Completion notification
       figma.notify(
-        `${totalUpdatedVariables}個の変数のコード構文を更新しました`
+        `Updated code syntax for ${totalUpdatedVariables} variables`
       );
     } catch (error) {
       figma.notify(
-        `エラーが発生しました: ${
+        `An error occurred: ${
           error instanceof Error ? error.message : String(error)
         }`
       );
     }
 
-    // プラグインを閉じる
+    // Close the plugin
     figma.closePlugin();
   }
 };
