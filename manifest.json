@@ -6,6 +6,5 @@
   "ui": "dist/ui.html",
   "capabilities": [],
   "enableProposedApi": false,
-  "editorType": ["figma"],
-  "description": "Format Figma variables as CSS custom properties with customizable prefixes."
+  "editorType": ["figma"]
 }
