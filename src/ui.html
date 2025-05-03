@@ -7,18 +7,23 @@
   </head>
   <body>
     <div class="plugin">
-      <h2 class="plugin__title">Variable Code Syntax Formatter</h2>
+      <header class="plugin__header">
+        <h2 class="plugin__title">Variable Code Syntax Formatter</h2>
 
-      <div class="plugin__description">
-        <p class="plugin__description-text">
-          Set CSS variable prefixes for all variables at once.
-        </p>
-      </div>
+        <div class="description">
+          <p class="description-text">
+            Set CSS variable prefixes for all variables at once.
+          </p>
+        </div>
+      </header>
 
       <div class="plugin__body">
         <div class="form-group">
-          <label for="prefix">CSS Variable Prefix:</label>
+          <label for="prefix" class="form-group__label"
+            >CSS Variable Prefix:</label
+          >
           <input
+            class="form-group__input"
             type="text"
             id="prefix"
             placeholder="e.g. --ds-"
@@ -27,8 +32,8 @@
         </div>
 
         <div class="preview">
-          <label>Preview:</label>
-          <code>var(--ds-variableName)</code>
+          <label class="preview__label">Preview:</label>
+          <code class="preview__code">var(--ds-variableName)</code>
         </div>
       </div>
 
