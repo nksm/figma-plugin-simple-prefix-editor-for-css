@@ -10,4 +10,14 @@ export interface CancelMessage {
   type: "cancel";
 }
 
-export type PluginMessage = ApplyMessage | CancelMessage;
+export interface GetThemeMessage {
+  type: "get-theme";
+}
+
+export interface ThemeChangedMessage {
+  type: "theme-changed";
+  isDarkMode: boolean;
+}
+
+export type UIMessage = ApplyMessage | CancelMessage | GetThemeMessage;
+export type PluginMessage = UIMessage | ThemeChangedMessage;

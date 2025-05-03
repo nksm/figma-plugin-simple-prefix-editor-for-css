@@ -1,15 +1,20 @@
 /// <reference types="@figma/plugin-typings" />
-import { PluginMessage } from "./types";
+import { PluginMessage, UIMessage } from "./types";
 
 // プラグインのUIを表示
-figma.showUI(__html__, { width: 320, height: 320 });
+figma.showUI(__html__, { width: 320, height: 360 });
+
+// テーマ情報はUIのみで管理し、プラグイン側では関与しない
+// OSの設定に基づいてUIが自動的に調整する
 
 // UIからのメッセージを処理
-figma.ui.onmessage = async (msg: PluginMessage) => {
+figma.ui.onmessage = async (msg: UIMessage) => {
   if (msg.type === "cancel") {
     figma.closePlugin();
     return;
   }
+
+  // テーマ取得リクエストは無視する - UIが自動的にシステム設定に基づいて調整する
 
   if (msg.type === "apply") {
     const { prefix, convertSlash } = msg;
