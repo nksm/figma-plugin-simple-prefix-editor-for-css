@@ -1,6 +1,6 @@
-# CSS Variable Syntax Formatter for Figma
+# CSS Custom Property Formatter for Figma
 
-A Figma plugin that formats variable code syntax as CSS variables.
+A Figma plugin that formats variable code syntax as CSS custom properties.
 
 ## Features
 
@@ -12,14 +12,14 @@ A Figma plugin that formats variable code syntax as CSS variables.
 ## How to Use
 
 1. Launch the plugin
-2. Enter your desired CSS variable prefix (e.g., `--ds-`)
+2. Enter your desired CSS custom property prefix (e.g., `--ds-`)
 3. Click "Apply"
 4. All variables will now use the formatted syntax when copied in developer mode
 
 ## Benefits
 
 - Standardizes variable naming across design systems
-- Ensures CSS variable naming convention compliance (hyphen-separated)
+- Ensures CSS custom property naming convention compliance (hyphen-separated)
 - Outputs variables wrapped in `var()` function ready to paste into CSS
 - Preserves variable hierarchy while improving readability
 
@@ -53,7 +53,7 @@ npm run build
 
 - Modern development environment with TypeScript and Vite
 - Efficient implementation using Figma Variables API
-- CSS variable format: `var(--prefix-variableName)`
+- CSS custom property format: `var(--prefix-variableName)`
 - Automatic dark/light mode support
 
 ## License

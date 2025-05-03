@@ -1,10 +1,11 @@
 {
-  "name": "CSS Variable Syntax Formatter",
+  "name": "CSS Custom Property Formatter",
   "id": "variable-code-syntax-formatter",
   "api": "1.0.0",
   "main": "dist/code.js",
   "ui": "dist/ui.html",
   "capabilities": [],
   "enableProposedApi": false,
-  "editorType": ["figma"]
+  "editorType": ["figma"],
+  "description": "Format Figma variables as CSS custom properties with customizable prefixes."
 }
