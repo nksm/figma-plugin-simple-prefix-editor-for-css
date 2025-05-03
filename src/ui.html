@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>変数コード構文フォーマッター</title>
-</head>
-<body>
-  <div class="container">
-    <h2>変数コード構文フォーマッター</h2>
-    
-    <div class="description">
-      <p>変数のコード構文のプレフィックスを一括で設定します。</p>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>変数コード構文フォーマッター</title>
+  </head>
+  <body>
+    <div class="plugin">
+      <h2 class="plugin__title">変数コード構文フォーマッター</h2>
 
-    <div class="form-group">
-      <label for="prefix">CSS変数プレフィックス:</label>
-      <input type="text" id="prefix" placeholder="例: --mds-" value="--mds-" />
-    </div>
+      <div class="plugin__description">
+        <p class="plugin__description-text">
+          変数のコード構文のプレフィックスを一括で設定します。
+        </p>
+      </div>
 
-    <div class="checkbox-group">
-      <input type="checkbox" id="convertSlash" checked />
-      <label for="convertSlash">スラッシュ (/) をハイフン (-) に変換する</label>
-    </div>
+      <div class="plugin__body">
+        <div class="form-group">
+          <label for="prefix">CSS変数プレフィックス:</label>
+          <input
+            type="text"
+            id="prefix"
+            placeholder="例: --ds-"
+            value="--ds-"
+          />
+        </div>
 
-    <div class="preview">
-      <label>プレビュー:</label>
-      <code>--mds-変数名</code>
-    </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="convertSlash" checked />
+          <label for="convertSlash"
+            >スラッシュ (/) をハイフン (-) に変換する</label
+          >
+        </div>
 
-    <div class="button-row">
-      <button id="apply">適用</button>
-      <button id="cancel">キャンセル</button>
+        <div class="preview">
+          <label>プレビュー:</label>
+          <code>var(--ds-変数名)</code>
+        </div>
+      </div>
+
+      <div class="plugin__footer">
+        <button id="apply">適用</button>
+        <button id="cancel">キャンセル</button>
+      </div>
     </div>
-  </div>
-  <script type="module" src="./ui.ts"></script>
-</body>
+    <script type="module" src="./ui.ts"></script>
+  </body>
 </html>
