@@ -29,3 +29,5 @@ EOF < /dev/null
 # For AI models
 # This is a list of AI models and their respective files that should be ignored.
 /CLAUDE.md
+
+**/.claude/settings.local.json
