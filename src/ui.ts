@@ -1,5 +1,5 @@
 /// <reference types="@figma/plugin-typings" />
-import { ApplyMessage, CancelMessage } from "./types";
+import { ApplyMessage, CancelMessage, ResetMessage } from "./types";
 import { MESSAGE_TYPE } from "./constants";
 import "./ui.css";
 
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           pluginMessage: {
             type: MESSAGE_TYPE.RESET,
-          } as ApplyMessage,
+          } as ResetMessage,
         },
         "*"
       );

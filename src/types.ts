@@ -10,5 +10,9 @@ export interface CancelMessage {
   type: typeof MESSAGE_TYPE.CANCEL;
 }
 
-export type UIMessage = ApplyMessage | CancelMessage;
+export interface ResetMessage {
+  type: typeof MESSAGE_TYPE.RESET;
+}
+
+export type UIMessage = ApplyMessage | CancelMessage | ResetMessage;
 export type PluginMessage = UIMessage;

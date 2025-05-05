@@ -7,7 +7,7 @@ const MESSAGE_TYPE = {
 const CODE_SYNTAX_TYPE = {
   WEB: "WEB",
   IOS: "iOS",
-  ANDROID: "iOS",
+  ANDROID: "ANDROID",
 };
 
 type MessageType = (typeof MESSAGE_TYPE)[keyof typeof MESSAGE_TYPE];
