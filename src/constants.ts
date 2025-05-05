@@ -4,6 +4,12 @@ const MESSAGE_TYPE = {
   RESET: "reset",
 };
 
+const CODE_SYNTAX_TYPE = {
+  WEB: "WEB",
+  IOS: "iOS",
+  ANDROID: "iOS",
+};
+
 type MessageType = (typeof MESSAGE_TYPE)[keyof typeof MESSAGE_TYPE];
 
-export { MESSAGE_TYPE, type MessageType };
+export { MESSAGE_TYPE, CODE_SYNTAX_TYPE, type MessageType };

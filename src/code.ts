@@ -1,6 +1,6 @@
 /// <reference types="@figma/plugin-typings" />
 import { UIMessage } from "./types";
-import { MESSAGE_TYPE } from "./constants";
+import { MESSAGE_TYPE, CODE_SYNTAX_TYPE } from "./constants";
 
 // Show plugin UI
 figma.showUI(__html__, { width: 320, height: 360 });
@@ -49,16 +49,17 @@ figma.ui.onmessage = async (msg: UIMessage) => {
 
             // Set the code syntax
             variable.setVariableCodeSyntax(
-              "WEB",
+              CODE_SYNTAX_TYPE.WEB as CodeSyntaxPlatform,
               `var(--${prefix}-${variableName})`
             );
           }
 
           if (msg.type === MESSAGE_TYPE.RESET) {
-            variable.removeVariableCodeSyntax("WEB");
+            variable.removeVariableCodeSyntax(
+              CODE_SYNTAX_TYPE.WEB as CodeSyntaxPlatform
+            );
             notificationActionType = "Remove";
           }
-
           totalUpdatedVariables++;
         }
       }
