@@ -1,7 +1,7 @@
 {
   "name": "figma-plugin-variable-code-syntax-formatter",
   "version": "1.0.0",
-  "description": "A Figma plugin to format variables as CSS custom properties with customizable prefixes",
+  "description": "A simple Figma plugin to add custom prefixes to variables as CSS custom properties",
   "type": "module",
   "scripts": {
     "dev": "vite",

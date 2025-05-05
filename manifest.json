@@ -1,11 +1,10 @@
 {
-  "name": "CSS Custom Property Formatter",
-  "id": "variable-code-syntax-formatter",
+  "name": "Simple Prefix Editor for CSS",
+  "id": "simple-prefix-editor-for-css",
   "api": "1.0.0",
   "main": "dist/code.js",
   "ui": "dist/ui.html",
   "capabilities": [],
   "enableProposedApi": false,
-  "editorType": ["figma"],
-  "description": "Format Figma variables as CSS custom properties with customizable prefixes."
+  "editorType": ["figma"]
 }

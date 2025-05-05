@@ -1,6 +1,6 @@
-# CSS Custom Property Formatter for Figma
+# Simple Prefix Editor for CSS
 
-A Figma plugin that formats variable code syntax as CSS custom properties.
+A lightweight Figma plugin for quickly adding prefixes to variable code syntax as CSS custom properties.
 
 ## Features
 
@@ -8,20 +8,29 @@ A Figma plugin that formats variable code syntax as CSS custom properties.
 - Automatically converts slashes (/) to hyphens (-)
 - Formats variables as CSS custom properties with `var()` function
 - Works with all variable collections in the document
+- Reset functionality to remove custom syntax
 
 ## How to Use
 
 1. Launch the plugin
-2. Enter your desired CSS custom property prefix (e.g., `--ds-`)
-3. Click "Apply"
-4. All variables will now use the formatted syntax when copied in developer mode
+2. Enter your desired CSS custom property prefix (e.g., `ds`)
+3. Click "Apply" to add prefixes (formatted as `var(--ds-variableName)`)
+4. Click "Reset" to remove all custom syntax
 
 ## Benefits
 
+- Streamlines design-to-code workflow
 - Standardizes variable naming across design systems
-- Ensures CSS custom property naming convention compliance (hyphen-separated)
-- Outputs variables wrapped in `var()` function ready to paste into CSS
+- Ensures CSS custom property naming convention compliance
+- Creates code-ready variables with minimal effort
 - Preserves variable hierarchy while improving readability
+
+## Use Cases
+
+- Design systems that require standardized CSS variables
+- Front-end development teams using Figma variables
+- Design handoff processes requiring formatted code syntax
+- Projects with consistent naming conventions
 
 ## Development
 
@@ -51,8 +60,9 @@ npm run build
 
 ## Technical Details
 
-- Modern development environment with TypeScript and Vite
+- Built with TypeScript and Vite
 - Efficient implementation using Figma Variables API
+- Simple and intuitive user interface
 - CSS custom property format: `var(--prefix-variableName)`
 - Automatic dark/light mode support
 
@@ -62,4 +72,4 @@ ISC
 
 ---
 
-_This plugin helps bridge the gap between Figma Variables and CSS custom properties, making it easier to export design tokens to code._
+_This plugin bridges the gap between Figma Variables and CSS custom properties, making design-to-code workflows seamless and consistent._
