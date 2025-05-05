@@ -46,8 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
           pluginMessage: {
             type: "apply",
             prefix: prefixInput.value,
-            convertSlash: true,
-            selectAll: true,
           } as ApplyMessage,
         },
         "*"

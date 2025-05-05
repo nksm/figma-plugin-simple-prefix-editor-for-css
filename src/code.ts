@@ -1,5 +1,5 @@
 /// <reference types="@figma/plugin-typings" />
-import { PluginMessage, UIMessage } from "./types";
+import { UIMessage } from "./types";
 
 // Show plugin UI
 figma.showUI(__html__, { width: 320, height: 360 });
@@ -17,7 +17,7 @@ figma.ui.onmessage = async (msg: UIMessage) => {
   // Ignore theme requests - UI automatically adjusts based on system settings
 
   if (msg.type === "apply") {
-    const { prefix, convertSlash } = msg;
+    const { prefix } = msg;
 
     try {
       // Get all available variable collections
@@ -44,15 +44,13 @@ figma.ui.onmessage = async (msg: UIMessage) => {
           // Get the variable name
           let variableName: string = variable.name;
 
-          // Convert slashes to hyphens if the option is selected
-          if (convertSlash) {
-            variableName = variableName.replace(/\//g, "-");
-          }
+          // Convert slashes to hyphens
+          variableName = variableName.replace(/\//g, "-");
 
           // Set the code syntax
           variable.setVariableCodeSyntax(
             "WEB",
-            `var(${prefix}${variableName})`
+            `var(--${prefix}-${variableName})`
           );
           totalUpdatedVariables++;
         }
