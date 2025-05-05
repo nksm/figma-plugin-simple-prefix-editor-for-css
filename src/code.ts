@@ -1,5 +1,6 @@
 /// <reference types="@figma/plugin-typings" />
 import { UIMessage } from "./types";
+import { MESSAGE_TYPE } from "./constants";
 
 // Show plugin UI
 figma.showUI(__html__, { width: 320, height: 360 });
@@ -9,14 +10,14 @@ figma.showUI(__html__, { width: 320, height: 360 });
 
 // Process messages from UI
 figma.ui.onmessage = async (msg: UIMessage) => {
-  if (msg.type === "cancel") {
+  if (msg.type === MESSAGE_TYPE.CANCEL) {
     figma.closePlugin();
     return;
   }
 
   // Ignore theme requests - UI automatically adjusts based on system settings
 
-  if (msg.type === "apply") {
+  if (msg.type === MESSAGE_TYPE.APPLY) {
     const { prefix } = msg;
 
     try {

@@ -1,5 +1,6 @@
 /// <reference types="@figma/plugin-typings" />
 import { ApplyMessage, CancelMessage } from "./types";
+import { MESSAGE_TYPE } from "./constants";
 import "./ui.css";
 
 // Run after DOM is loaded
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to update the preview display
   const updatePreview = () => {
     if (previewCode) {
-      previewCode.textContent = `var(${prefixInput.value}variableName)`;
+      previewCode.textContent = `var(--${prefixInput.value}-variableName)`;
     }
   };
 
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       parent.postMessage(
         {
           pluginMessage: {
-            type: "apply",
+            type: MESSAGE_TYPE.APPLY,
             prefix: prefixInput.value,
           } as ApplyMessage,
         },
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       parent.postMessage(
         {
           pluginMessage: {
-            type: "cancel",
+            type: MESSAGE_TYPE.CANCEL,
           } as CancelMessage,
         },
         "*"

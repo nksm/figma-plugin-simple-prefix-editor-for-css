@@ -1,23 +1,14 @@
+import { MESSAGE_TYPE } from "./constants";
+
 // Message type definitions
 export interface ApplyMessage {
-  type: "apply";
-  prefix: string;
-  convertSlash: boolean;
-  selectAll: boolean;
+  type: typeof MESSAGE_TYPE.APPLY;
+  prefix?: string;
 }
 
 export interface CancelMessage {
-  type: "cancel";
+  type: typeof MESSAGE_TYPE.CANCEL;
 }
 
-export interface GetThemeMessage {
-  type: "get-theme";
-}
-
-export interface ThemeChangedMessage {
-  type: "theme-changed";
-  isDarkMode: boolean;
-}
-
-export type UIMessage = ApplyMessage | CancelMessage | GetThemeMessage;
-export type PluginMessage = UIMessage | ThemeChangedMessage;
+export type UIMessage = ApplyMessage | CancelMessage;
+export type PluginMessage = UIMessage;
