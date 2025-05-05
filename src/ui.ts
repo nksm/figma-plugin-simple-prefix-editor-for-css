@@ -70,6 +70,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const resetButton = document.getElementById("reset");
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      // Send message to plugin
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: MESSAGE_TYPE.RESET,
+          } as ApplyMessage,
+        },
+        "*"
+      );
+    });
+  }
+
   // Automatic dark/light mode detection (system settings)
   // This works based on browser/OS settings, separate from Figma theme
   const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");

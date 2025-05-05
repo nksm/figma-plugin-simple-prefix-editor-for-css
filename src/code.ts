@@ -17,8 +17,9 @@ figma.ui.onmessage = async (msg: UIMessage) => {
 
   // Ignore theme requests - UI automatically adjusts based on system settings
 
-  if (msg.type === MESSAGE_TYPE.APPLY) {
+  if (msg.type === MESSAGE_TYPE.APPLY || msg.type === MESSAGE_TYPE.RESET) {
     const { prefix } = msg;
+    let notificationActionType = "Update";
 
     try {
       // Get all available variable collections
@@ -42,24 +43,29 @@ figma.ui.onmessage = async (msg: UIMessage) => {
 
           if (!variable) continue;
 
-          // Get the variable name
-          let variableName: string = variable.name;
+          if (msg.type === MESSAGE_TYPE.APPLY) {
+            // Convert slashes to hyphens
+            const variableName = variable.name.replace(/\//g, "-");
 
-          // Convert slashes to hyphens
-          variableName = variableName.replace(/\//g, "-");
+            // Set the code syntax
+            variable.setVariableCodeSyntax(
+              "WEB",
+              `var(--${prefix}-${variableName})`
+            );
+          }
 
-          // Set the code syntax
-          variable.setVariableCodeSyntax(
-            "WEB",
-            `var(--${prefix}-${variableName})`
-          );
+          if (msg.type === MESSAGE_TYPE.RESET) {
+            variable.removeVariableCodeSyntax("WEB");
+            notificationActionType = "Remove";
+          }
+
           totalUpdatedVariables++;
         }
       }
 
       // Completion notification
       figma.notify(
-        `Updated code syntax for ${totalUpdatedVariables} variables`
+        `${notificationActionType} code syntax for ${totalUpdatedVariables} variables`
       );
     } catch (error) {
       figma.notify(
