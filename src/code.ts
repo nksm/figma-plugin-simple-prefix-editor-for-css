@@ -3,7 +3,7 @@ import { UIMessage, ApplyMessage } from './types';
 import { MESSAGE_TYPE, CODE_SYNTAX_TYPE } from './constants';
 
 // Show plugin UI
-figma.showUI(__html__, { width: 280, height: 190 });
+figma.showUI(__html__, { width: 280, height: 210 });
 
 // Theme information is managed only in the UI, the plugin doesn't get involved
 // UI automatically adjusts based on OS settings
