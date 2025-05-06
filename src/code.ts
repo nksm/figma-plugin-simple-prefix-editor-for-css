@@ -9,13 +9,11 @@ figma.showUI(__html__, { width: 280, height: 210 });
 // UI automatically adjusts based on OS settings
 
 // Process messages from UI
-figma.ui.onmessage = async (msg: UIMessage) => {
+figma.ui.onmessage = (msg: UIMessage) => {
   if (msg.type === MESSAGE_TYPE.CANCEL) {
     figma.closePlugin();
     return;
   }
-
-  // Ignore theme requests - UI automatically adjusts based on system settings
 
   if (msg.type === MESSAGE_TYPE.APPLY || msg.type === MESSAGE_TYPE.RESET) {
     // Set action type based on message type

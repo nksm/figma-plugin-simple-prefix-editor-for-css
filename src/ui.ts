@@ -1,5 +1,5 @@
 /// <reference types="@figma/plugin-typings" />
-import { ApplyMessage, CancelMessage, ResetMessage } from './types';
+import { ApplyMessage, ResetMessage } from './types';
 import { MESSAGE_TYPE } from './constants';
 import './ui.css';
 
@@ -31,59 +31,37 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePreview();
 
   // Update preview when prefix changes
-  if (prefixInput) {
-    prefixInput.addEventListener('input', updatePreview);
-  }
+  prefixInput.addEventListener('input', updatePreview);
 
   // Theme is managed directly through system settings, not dependent on Figma messages
 
   // Apply button event listener
   const applyButton = document.getElementById('apply');
-  if (applyButton) {
-    applyButton.addEventListener('click', () => {
-      // Send message to plugin
-      parent.postMessage(
-        {
-          pluginMessage: {
-            type: MESSAGE_TYPE.APPLY,
-            prefix: prefixInput.value,
-          } as ApplyMessage,
-        },
-        '*'
-      );
-    });
-  }
-
-  // Cancel button event listener
-  const cancelButton = document.getElementById('cancel');
-  if (cancelButton) {
-    cancelButton.addEventListener('click', () => {
-      // Send cancel message to plugin
-      parent.postMessage(
-        {
-          pluginMessage: {
-            type: MESSAGE_TYPE.CANCEL,
-          } as CancelMessage,
-        },
-        '*'
-      );
-    });
-  }
+  applyButton.addEventListener('click', () => {
+    // Send message to plugin
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: MESSAGE_TYPE.APPLY,
+          prefix: prefixInput.value,
+        } as ApplyMessage,
+      },
+      '*'
+    );
+  });
 
   const resetButton = document.getElementById('reset');
-  if (resetButton) {
-    resetButton.addEventListener('click', () => {
-      // Send message to plugin
-      parent.postMessage(
-        {
-          pluginMessage: {
-            type: MESSAGE_TYPE.RESET,
-          } as ResetMessage,
-        },
-        '*'
-      );
-    });
-  }
+  resetButton.addEventListener('click', () => {
+    // Send message to plugin
+    parent.postMessage(
+      {
+        pluginMessage: {
+          type: MESSAGE_TYPE.RESET,
+        } as ResetMessage,
+      },
+      '*'
+    );
+  });
 
   // Automatic dark/light mode detection (system settings)
   // This works based on browser/OS settings, separate from Figma theme
