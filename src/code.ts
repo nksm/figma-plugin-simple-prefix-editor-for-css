@@ -10,11 +10,6 @@ figma.showUI(__html__, { width: 280, height: 210 });
 
 // Process messages from UI
 figma.ui.onmessage = (msg: UIMessage) => {
-  if (msg.type === MESSAGE_TYPE.CANCEL) {
-    figma.closePlugin();
-    return;
-  }
-
   if (msg.type === MESSAGE_TYPE.APPLY || msg.type === MESSAGE_TYPE.RESET) {
     // Set action type based on message type
     const isReset = msg.type === MESSAGE_TYPE.RESET;
