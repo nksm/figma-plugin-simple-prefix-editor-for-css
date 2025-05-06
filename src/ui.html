@@ -19,9 +19,7 @@
 
       <div class="plugin__body">
         <div class="form-group">
-          <label for="prefix" class="form-group__label"
-            >CSS Custom Property Prefix:</label
-          >
+          <label for="prefix" class="form-group__label">Prefix</label>
           <input
             class="form-group__input"
             type="text"
@@ -32,15 +30,16 @@
         </div>
 
         <div class="preview">
-          <label class="preview__label">Preview:</label>
+          <label class="preview__label">Preview</label>
           <code class="preview__code">var(--ds-variableName)</code>
         </div>
       </div>
 
       <div class="plugin__footer">
-        <button id="apply" class="button button--apply">Apply</button>
-        <button id="cancel" class="button button--cancel">Cancel</button>
-        <button id="reset" class="button button--reset">Reset</button>
+        <div class="button-group">
+          <button id="apply" class="button button--apply">Apply</button>
+          <button id="reset" class="button button--text">Reset</button>
+        </div>
       </div>
     </div>
     <script type="module" src="./ui.ts"></script>

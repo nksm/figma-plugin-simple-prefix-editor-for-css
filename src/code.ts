@@ -3,7 +3,7 @@ import { UIMessage, ApplyMessage, ResetMessage } from "./types";
 import { MESSAGE_TYPE, CODE_SYNTAX_TYPE } from "./constants";
 
 // Show plugin UI
-figma.showUI(__html__, { width: 320, height: 360 });
+figma.showUI(__html__, { width: 280, height: 190 });
 
 // Theme information is managed only in the UI, the plugin doesn't get involved
 // UI automatically adjusts based on OS settings
@@ -21,7 +21,7 @@ figma.ui.onmessage = async (msg: UIMessage) => {
     // Set action type based on message type
     const isReset = msg.type === MESSAGE_TYPE.RESET;
     const notificationActionType = isReset ? "Remove" : "Update";
-    
+
     // For ApplyMessage, get the prefix
     const prefix = !isReset ? (msg as ApplyMessage).prefix : undefined;
 
@@ -41,7 +41,7 @@ figma.ui.onmessage = async (msg: UIMessage) => {
         // Process each variable
         for (const variableId of collection.variableIds) {
           const variable = figma.variables.getVariableById(variableId);
-          
+
           if (!variable) continue;
 
           if (isReset) {
@@ -57,7 +57,7 @@ figma.ui.onmessage = async (msg: UIMessage) => {
               `var(--${prefix}-${variableName})`
             );
           }
-          
+
           totalUpdatedVariables++;
         }
       }
