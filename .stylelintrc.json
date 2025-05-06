@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "stylelint-config-standard", 
+    "stylelint-config-recess-order"
+  ],
+  "plugins": [],
+  "rules": {
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "no-descending-specificity": null,
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["layer", "container", "apply", "screen", "media"]
+      }
+    ],
+    "declaration-block-no-redundant-longhand-properties": null,
+    "property-no-vendor-prefix": null,
+    "value-no-vendor-prefix": null,
+    "function-no-unknown": null
+  }
+}
