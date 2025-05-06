@@ -7,7 +7,7 @@ import './ui.css';
 document.addEventListener('DOMContentLoaded', () => {
   const bodyElement = document.body;
   const prefixInput = document.getElementById('prefix') as HTMLInputElement;
-  const previewCode = document.querySelector('.preview code') as HTMLElement;
+  const previewCode = document.querySelector('.preview__code') as HTMLElement;
 
   // Function to apply theme settings
   const applyTheme = (isDarkMode: boolean) => {
@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Function to update the preview display
   const updatePreview = () => {
-    if (previewCode) {
-      previewCode.textContent = `var(--${prefixInput.value}-variableName)`;
-    }
+    previewCode.textContent = prefixInput.value
+      ? `var(--${prefixInput.value}-variableName)`
+      : '-';
   };
 
   // Update preview on initial display
