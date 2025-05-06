@@ -23,7 +23,7 @@
     "design-system"
   ],
   "author": "Akira Nakashima",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@figma/plugin-typings": "^1.110.0",
     "@types/node": "^20.10.5",
