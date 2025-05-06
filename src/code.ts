@@ -1,6 +1,6 @@
 /// <reference types="@figma/plugin-typings" />
-import { UIMessage, ApplyMessage, ResetMessage } from "./types";
-import { MESSAGE_TYPE, CODE_SYNTAX_TYPE } from "./constants";
+import { UIMessage, ApplyMessage } from './types';
+import { MESSAGE_TYPE, CODE_SYNTAX_TYPE } from './constants';
 
 // Show plugin UI
 figma.showUI(__html__, { width: 280, height: 190 });
@@ -20,7 +20,7 @@ figma.ui.onmessage = async (msg: UIMessage) => {
   if (msg.type === MESSAGE_TYPE.APPLY || msg.type === MESSAGE_TYPE.RESET) {
     // Set action type based on message type
     const isReset = msg.type === MESSAGE_TYPE.RESET;
-    const notificationActionType = isReset ? "Remove" : "Update";
+    const notificationActionType = isReset ? 'Remove' : 'Update';
 
     // For ApplyMessage, get the prefix
     const prefix = !isReset ? (msg as ApplyMessage).prefix : undefined;
@@ -30,7 +30,7 @@ figma.ui.onmessage = async (msg: UIMessage) => {
       const collections = figma.variables.getLocalVariableCollections();
 
       if (collections.length === 0) {
-        figma.notify("No variable collections found.");
+        figma.notify('No variable collections found.');
         return;
       }
 
@@ -51,7 +51,7 @@ figma.ui.onmessage = async (msg: UIMessage) => {
             );
           } else if (prefix !== undefined) {
             // Apply operation
-            const variableName = variable.name.replace(/\//g, "-");
+            const variableName = variable.name.replace(/\//g, '-');
             variable.setVariableCodeSyntax(
               CODE_SYNTAX_TYPE.WEB as CodeSyntaxPlatform,
               `var(--${prefix}-${variableName})`

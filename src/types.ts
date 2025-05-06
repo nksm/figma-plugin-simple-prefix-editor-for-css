@@ -1,4 +1,4 @@
-import { MESSAGE_TYPE } from "./constants";
+import { MESSAGE_TYPE } from './constants';
 
 // Message type definitions
 export interface ApplyMessage {
