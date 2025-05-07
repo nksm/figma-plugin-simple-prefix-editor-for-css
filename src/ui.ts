@@ -3,51 +3,82 @@ import { ApplyMessage, ResetMessage } from './types';
 import { MESSAGE_TYPE } from './constants';
 import './ui.css';
 
-// Run after DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  const prefixInput = document.getElementById('prefix') as HTMLInputElement;
-  const previewCode = document.querySelector('.preview__code') as HTMLElement;
+// Object to manage DOM elements
+interface UIElements {
+  prefixInput: HTMLInputElement;
+  previewCode: HTMLElement;
+  applyButton: HTMLElement | null;
+  resetButton: HTMLElement | null;
+}
 
-  // Function to update the preview display
-  const updatePreview = () => {
-    previewCode.textContent = prefixInput.value
-      ? `var(--${prefixInput.value}-variableName)`
-      : '-';
+// Function to update the preview display
+const updatePreview = (previewElement: HTMLElement, prefixValue: string) => {
+  if (previewElement) {
+    previewElement.textContent = `var(--${prefixValue}-variableName)`;
+  }
+};
+
+// Function to set up the Apply button
+const setApplyButton = (elements: UIElements) => {
+  if (elements.applyButton) {
+    elements.applyButton.addEventListener('click', () => {
+      // Send message to plugin
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: MESSAGE_TYPE.APPLY,
+            prefix: elements.prefixInput.value,
+          } as ApplyMessage,
+        },
+        '*'
+      );
+    });
+  }
+};
+
+// Function to set up the Reset button
+const setResetButton = (elements: UIElements) => {
+  if (elements.resetButton) {
+    elements.resetButton.addEventListener('click', () => {
+      // Send reset message to plugin
+      parent.postMessage(
+        {
+          pluginMessage: {
+            type: MESSAGE_TYPE.RESET,
+          } as ResetMessage,
+        },
+        '*'
+      );
+    });
+  }
+};
+
+// Function to set up the prefix input field event listener
+const setPrefixInputListener = (elements: UIElements) => {
+  if (elements.prefixInput) {
+    elements.prefixInput.addEventListener('input', () => {
+      updatePreview(elements.previewCode, elements.prefixInput.value);
+    });
+  }
+};
+
+// Main initialization function
+const initializeUI = () => {
+  const elements: UIElements = {
+    prefixInput: document.getElementById('prefix') as HTMLInputElement,
+    previewCode: document.querySelector('.preview code') as HTMLElement,
+    applyButton: document.getElementById('apply'),
+    resetButton: document.getElementById('reset'),
   };
 
-  // Update preview on initial display
-  updatePreview();
+  // Update initial preview display
+  updatePreview(elements.previewCode, elements.prefixInput.value);
 
-  // Update preview when prefix changes
-  prefixInput.addEventListener('input', updatePreview);
+  // Set up various event listeners
+  setPrefixInputListener(elements);
+  setApplyButton(elements);
+  setResetButton(elements);
+};
 
-  // Theme is managed directly through system settings, not dependent on Figma messages
-
-  // Apply button event listener
-  const applyButton = document.getElementById('apply');
-  applyButton.addEventListener('click', () => {
-    // Send message to plugin
-    parent.postMessage(
-      {
-        pluginMessage: {
-          type: MESSAGE_TYPE.APPLY,
-          prefix: prefixInput.value,
-        } as ApplyMessage,
-      },
-      '*'
-    );
-  });
-
-  const resetButton = document.getElementById('reset');
-  resetButton.addEventListener('click', () => {
-    // Send message to plugin
-    parent.postMessage(
-      {
-        pluginMessage: {
-          type: MESSAGE_TYPE.RESET,
-        } as ResetMessage,
-      },
-      '*'
-    );
-  });
-});
+// Execute after DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeUI);
