@@ -5,41 +5,6 @@
   --color-text: #333;
   --color-text-secondary: #555;
   --color-border: #e0e0e0;
-  --color-preview-bg: #f8f8f8;
-  --color-primary: #0d99ff;
-  --color-primary-text: #fff;
-  --color-cancel-bg: #f5f5f5;
-  --color-cancel-text: #333;
-  --color-cancel-border: #ddd;
-  --color-input-bg: #fff;
-  --color-shadow: rgb(0 0 0 / 8%);
-}
-
-/* Dark mode colors (based on system settings) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: #1e1e1e;
-    --color-text: #e0e0e0;
-    --color-text-secondary: #aaa;
-    --color-border: #444;
-    --color-preview-bg: #2d2d2d;
-    --color-preview-code: #79d297;
-    --color-primary: #0d99ff;
-    --color-primary-text: #fff;
-    --color-cancel-bg: #2d2d2d;
-    --color-cancel-text: #e0e0e0;
-    --color-cancel-border: #444;
-    --color-input-bg: #2a2a2a;
-    --color-shadow: rgb(0 0 0 / 25%);
-  }
-}
-
-/* Figma theme setting (class-based) - Light mode */
-.figma-light {
-  --color-background: #fff;
-  --color-text: #333;
-  --color-text-secondary: #555;
-  --color-border: #e0e0e0;
   --color-preview-bg: #f5f5f5;
   --color-preview-code: #009951;
   --color-primary: #18a0fb;
@@ -51,21 +16,23 @@
   --color-shadow: rgb(0 0 0 / 8%);
 }
 
-/* Figma theme setting (class-based) - Dark mode */
-.figma-dark {
-  --color-background: #1e1e1e;
-  --color-text: #e0e0e0;
-  --color-text-secondary: #aaa;
-  --color-border: #444;
-  --color-preview-bg: #383838;
-  --color-preview-code: #009951;
-  --color-primary: #18a0fb;
-  --color-primary-text: #fff;
-  --color-cancel-bg: #2d2d2d;
-  --color-cancel-text: #e0e0e0;
-  --color-cancel-border: #444;
-  --color-input-bg: #2a2a2a;
-  --color-shadow: rgb(0 0 0 / 25%);
+/* Dark mode colors (based on system settings) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1e1e1e;
+    --color-text: #e0e0e0;
+    --color-text-secondary: #aaa;
+    --color-border: #444;
+    --color-preview-bg: #383838;
+    --color-preview-code: #009951;
+    --color-primary: #18a0fb;
+    --color-primary-text: #fff;
+    --color-cancel-bg: #2d2d2d;
+    --color-cancel-text: #e0e0e0;
+    --color-cancel-border: #444;
+    --color-input-bg: #2a2a2a;
+    --color-shadow: rgb(0 0 0 / 25%);
+  }
 }
 
 /* Inherit Figma UI theme */

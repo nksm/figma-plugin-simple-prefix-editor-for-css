@@ -5,20 +5,8 @@ import './ui.css';
 
 // Run after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  const bodyElement = document.body;
   const prefixInput = document.getElementById('prefix') as HTMLInputElement;
   const previewCode = document.querySelector('.preview__code') as HTMLElement;
-
-  // Function to apply theme settings
-  const applyTheme = (isDarkMode: boolean) => {
-    if (isDarkMode) {
-      bodyElement.classList.add('figma-dark');
-      bodyElement.classList.remove('figma-light');
-    } else {
-      bodyElement.classList.add('figma-light');
-      bodyElement.classList.remove('figma-dark');
-    }
-  };
 
   // Function to update the preview display
   const updatePreview = () => {
@@ -61,17 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       '*'
     );
-  });
-
-  // Automatic dark/light mode detection (system settings)
-  // This works based on browser/OS settings, separate from Figma theme
-  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-  // Set initial state
-  applyTheme(darkModeMediaQuery.matches);
-
-  // Detect theme changes
-  darkModeMediaQuery.addEventListener('change', (e) => {
-    applyTheme(e.matches);
   });
 });
